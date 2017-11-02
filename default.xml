@@ -21,7 +21,6 @@
   <project name="96boards/meta-96boards" path="layers/meta-96boards" revision="3bce974c381cae3b52040e06643ed6892f211896"/>
   <project name="ndechesne/meta-qcom" path="layers/meta-qcom" revision="a95622c51486b3c584ec276c78a3a3a58c91c912"/>
   <project name="Freescale/meta-freescale-3rdparty" path="layers/meta-freescale-3rdparty" revision="fd3962a994b2f477d3e81fa7083f6b3d4e666df5"/>
-  <project name="cpriouzeau/meta-st-cannes2" path="layers/meta-st-cannes2" revision="8abc5197f3456590c493c59d1e6f696e25f88927"/>
   <project remote="yocto" name="git/meta-raspberrypi" path="layers/meta-raspberrypi" revision="11fec461330982ee15b4ac6dca5014fabe59198f"/>
   <project remote="yocto" name="git/meta-freescale" path="layers/meta-freescale" revision="98d57b06d88cb22129bd417a9a3edbaf24612460"/>
   <project remote="yocto" name="git/meta-yocto" path="layers/meta-yocto" revision="86ab7ab6688f250bb5777371d2cbc28c770847d4">
