@@ -24,7 +24,7 @@
   <project remote="yocto" name="git/meta-freescale" path="layers/meta-freescale" revision="4cb517972b520066fa064f47624635eb3ea41cb2"/>
 
   <!-- LITE -->
-  <project remote="linaro" name="people/christophe.priouzeau/meta-lite" path="layers/meta-ledge" revision="89f5ec961d7859cabea6cc532753b9bc53efcfca">
+  <project remote="linaro" name="people/christophe.priouzeau/meta-lite" path="layers/meta-ledge" revision="ca9fdf0695a1452aae5110090cc1cbad9b092b1f">
         <linkfile dest="setup-environment" src="../../.repo/manifests/setup-environment"/>
  </project>
 
@@ -39,7 +39,7 @@
   <!--linaro-->
   <project name="96boards/meta-96boards" path="layers/meta-96boards" remote="github" revision="1d7ff4dd4b2126a74849ef62d2038ecca3851de3" />
   <project name="ndechesne/meta-qcom" path="layers/meta-qcom" remote="github" revision="40d611d2176b746f84ffee6b2168caeee4f73092" />
-  <project name="git/meta-ti" path="layers/meta-ti" remote="yocto" revision="e0b60fe102ba3885590bb8551ce31870be087b08" branch="master" />
+  <project name="git/meta-ti" path="layers/meta-ti" remote="yocto" revision="66769ae4a7a6ce3c5bf5085825aca423665eab41" branch="master" />
 
 
    <project name="cpriouzeau/meta-st-cannes2" path="layers/meta-st-cannes2" remote="github" revision="1c9fbe94ad028d56dfdd13aa9672d4cea2b5646e"/>
