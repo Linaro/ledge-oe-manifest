@@ -362,6 +362,8 @@ Some of common targets are:
     rpb-desktop-image
     rpb-weston-image
     core-image-base
+    
+    lmp-gateway-image
     core-image-minimal
 
 EOF
