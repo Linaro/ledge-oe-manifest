@@ -24,7 +24,7 @@
   <project remote="yocto" name="git/meta-freescale" path="layers/meta-freescale" revision="4cb517972b520066fa064f47624635eb3ea41cb2"/>
 
   <!-- LITE -->
-  <project remote="linaro" name="people/christophe.priouzeau/meta-lite" path="layers/meta-ledge" revision="ca9fdf0695a1452aae5110090cc1cbad9b092b1f">
+  <project remote="linaro" name="people/christophe.priouzeau/meta-lite" path="layers/meta-ledge" revision="968485b15bffc7cf041fb8eea5167f3812c2974f">
         <linkfile dest="setup-environment" src="../../.repo/manifests/setup-environment"/>
  </project>
 
