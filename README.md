@@ -1,11 +1,11 @@
-oe-lite-manifest
+Ledge-oe-manifest
 =================
 (derivated from https://github.com/96boards/oe-rpb-manifest)
 
-LITE OE Repo manifest repository
+LEGDE OE Repo manifest repository
 
-These are the setup scripts for the OE LITE buildsystem. If you want to (re)build packages or images for OE LITE, this is the thing to use.
-The OE LITE buildsystem is using various components from the Yocto Project, most importantly the Openembedded buildsystem, the bitbake task executor and various application and BSP layers.
+These are the setup scripts for the LEDGE OE buildsystem. If you want to (re)build packages or images for OE LEGDE, this is the thing to use.
+The OE LEDGE buildsystem is using various components from the Yocto Project, most importantly the Openembedded buildsystem, the bitbake task executor and various application and BSP layers.
 
 To configure the scripts and download the build metadata, do:
 ```
@@ -41,17 +41,18 @@ Setup Environment
 -----------------
 
 MACHINE values can be:
-* lite-hummingboard2
+* ledge-ti-am572x
+* ledge-stih410-b2260
 
 DISTRO values can be:
-* lite-gw
+* ledge-gw
 
 ```
 . setup-environment
 MACHINE=<machine> DISTRO=<distro> bitbake rpb-ltd-gateway-image
 ```
-e.g. DISTRO=lite-gw MACHINE=lite-hummingboard2 bitbake source ./setup-environment
-     bitbake lite-gateway-image
+e.g. DISTRO=ledge-gw MACHINE=ledge-ti-am572x bitbake source ./setup-environment
+     bitbake lmp-gateway-image
 
 Creating a local topic branch
 -----------------------------
