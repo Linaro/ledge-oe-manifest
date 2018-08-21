@@ -5,7 +5,7 @@
 
   <remote fetch="http://git.yoctoproject.org" name="yocto"/>
   <remote fetch="https://github.com" name="github"/>
-  <remote fetch="http://git.linaro.org" name="linaro"/>
+  <remote fetch="http://git-us.linaro.org" name="linaro"/>
   <remote fetch="https://github.com/OpenSourceFoundries" name="OpenSourceFoundries" />
 
 
@@ -23,8 +23,8 @@
   <project name="Freescale/meta-freescale-3rdparty" path="layers/meta-freescale-3rdparty" revision="314291fb1083048a3553392feb8012853bf37570"/>
   <project remote="yocto" name="git/meta-freescale" path="layers/meta-freescale" revision="4cb517972b520066fa064f47624635eb3ea41cb2"/>
 
-  <!-- LITE -->
-  <project remote="linaro" name="people/christophe.priouzeau/meta-lite" path="layers/meta-ledge" revision="968485b15bffc7cf041fb8eea5167f3812c2974f">
+  <!-- LEDGE -->
+  <project remote="github" name="Linaro/meta-ledge" path="layers/meta-ledge" revision="968485b15bffc7cf041fb8eea5167f3812c2974f">
         <linkfile dest="setup-environment" src="../../.repo/manifests/setup-environment"/>
  </project>
 
