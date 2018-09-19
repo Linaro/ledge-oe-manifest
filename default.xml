@@ -23,8 +23,8 @@
   <project name="Freescale/meta-freescale-3rdparty" path="layers/meta-freescale-3rdparty" revision="314291fb1083048a3553392feb8012853bf37570"/>
   <project remote="yocto" name="git/meta-freescale" path="layers/meta-freescale" revision="4cb517972b520066fa064f47624635eb3ea41cb2"/>
 
-  <!-- LITE -->
-  <project remote="linaro" name="people/christophe.priouzeau/meta-lite" path="layers/meta-ledge" revision="968485b15bffc7cf041fb8eea5167f3812c2974f">
+  <!-- Ledge -->
+  <project remote="github" name="Linaro/meta-ledge" path="layers/meta-ledge" revision="d171040e571c9a2417a0c47ea3b814cd0ec5fe17">
         <linkfile dest="setup-environment" src="../../.repo/manifests/setup-environment"/>
  </project>
 
