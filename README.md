@@ -51,7 +51,7 @@ DISTRO values can be:
 . setup-environment
 MACHINE=<machine> DISTRO=<distro> bitbake rpb-ltd-gateway-image
 ```
-e.g. DISTRO=ledge-gw MACHINE=ledge-ti-am572x bitbake source ./setup-environment
+e.g. DISTRO=ledge-gw MACHINE=ledge-ti-am572x source ./setup-environment
      bitbake lmp-gateway-image
 
 Creating a local topic branch
