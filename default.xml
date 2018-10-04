@@ -24,7 +24,7 @@
   <project remote="yocto" name="git/meta-freescale" path="layers/meta-freescale" revision="4cb517972b520066fa064f47624635eb3ea41cb2"/>
 
   <!-- Ledge -->
-  <project remote="github" name="Linaro/meta-ledge" path="layers/meta-ledge" revision="d171040e571c9a2417a0c47ea3b814cd0ec5fe17">
+  <project remote="github" name="Linaro/meta-ledge" path="layers/meta-ledge" revision="88aabafb2b61b1b8eec4402c06a48f4c4515b737">
         <linkfile dest="setup-environment" src="../../.repo/manifests/setup-environment"/>
  </project>
 
