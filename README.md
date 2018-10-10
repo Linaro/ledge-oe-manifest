@@ -45,14 +45,15 @@ MACHINE values can be:
 * ledge-stih410-b2260
 
 DISTRO values can be:
-* ledge-distro
+* rpb
 
 ```
 . setup-environment
 MACHINE=<machine> DISTRO=<distro> bitbake rpb-ltd-gateway-image
 ```
-e.g. DISTRO=ledge-distro MACHINE=ledge-ti-am572x source ./setup-environment
-     bitbake lmp-gateway-image
+e.g. DISTRO=rpb MACHINE=ledge-ti-am572x source ./setup-environment
+
+     bitbake ledge-gateway
 
 Creating a local topic branch
 -----------------------------
