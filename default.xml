@@ -14,33 +14,29 @@
   <project name="openembedded/meta-openembedded" path="layers/meta-openembedded" revision="b0950aeff5b630256bb5e25ca15f4d59c115e7c1"/>
 
   <project remote="linaro" name="openembedded/meta-linaro" path="layers/meta-linaro" revision="282b47a10940c26854c1cca0ec40950192af16fc"/>
-  <project name="git/meta-yocto" path="layers/meta-yocto" remote="yocto" revision="eb759d24a69da5d649386a333461f4f226920f0d"/>¬
-
-  <!-- LTD -->
   <project name="linaro-technologies/meta-ltd" path="layers/meta-ltd" revision="2b9370f35dd3b5f2dde2ae165095406547162ba6"/>
+
+  <project name="git/meta-yocto" path="layers/meta-yocto" remote="yocto" revision="eb759d24a69da5d649386a333461f4f226920f0d"/>¬
+  <project name="git/meta-ti" path="layers/meta-ti" remote="yocto" revision="66769ae4a7a6ce3c5bf5085825aca423665eab41" branch="master" />
+  <project name="git/meta-virtualization" path="layers/meta-virtualization" remote="yocto" revision="43e4cd760f2ff1d4bca1ae18bac052db41716989" />
+
+  <project name="96boards/meta-rpb" path="layers/meta-rpb" remote="github" revision="sumo" />
 
   <!-- BSP -->
   <project name="Freescale/meta-freescale-3rdparty" path="layers/meta-freescale-3rdparty" revision="314291fb1083048a3553392feb8012853bf37570"/>
   <project remote="yocto" name="git/meta-freescale" path="layers/meta-freescale" revision="4cb517972b520066fa064f47624635eb3ea41cb2"/>
 
-  <!-- Ledge -->
-  <project remote="github" name="Linaro/meta-ledge" path="layers/meta-ledge" revision="88aabafb2b61b1b8eec4402c06a48f4c4515b737">
+  <!-- LEDGE -->
+  <project remote="github" name="Linaro/meta-ledge" path="layers/meta-ledge" revision="0c248c7528393e43fdb9bc86aa8a853e703cd9ee">
         <linkfile dest="setup-environment" src="../../.repo/manifests/setup-environment"/>
  </project>
 
-  <!--osf-->
+  <!--osf
   <project name="core-containers" path="containers/core-containers" remote="OpenSourceFoundries" revision="decce9f0e42cb9d20f1799f394efdf715ba72f21" />
   <project name="extra-containers" path="containers/extra-containers" remote="OpenSourceFoundries" revision="692eb049814f9b6282a30f8f606f1d4e1790075b" />
   <project name="gateway-containers" path="containers/gateway-containers" remote="OpenSourceFoundries" revision="87f961b280607b22630be4300be83c49e221d06f" />
   <project name="meta-osf" path="layers/meta-osf" remote="OpenSourceFoundries" revision="99486d0c3af5dcb8363b635dc689b2bef3c333bd" />
   <project name="meta-updater" path="layers/meta-updater" remote="OpenSourceFoundries" revision="29dd5029731d02f323adb760cc3b169feb66d475" />
-  <project name="git/meta-virtualization" path="layers/meta-virtualization" remote="yocto" revision="43e4cd760f2ff1d4bca1ae18bac052db41716989" />
+  -->
 
-  <!--linaro-->
-  <project name="96boards/meta-96boards" path="layers/meta-96boards" remote="github" revision="1d7ff4dd4b2126a74849ef62d2038ecca3851de3" />
-  <project name="ndechesne/meta-qcom" path="layers/meta-qcom" remote="github" revision="40d611d2176b746f84ffee6b2168caeee4f73092" />
-  <project name="git/meta-ti" path="layers/meta-ti" remote="yocto" revision="66769ae4a7a6ce3c5bf5085825aca423665eab41" branch="master" />
-
-
-   <project name="cpriouzeau/meta-st-cannes2" path="layers/meta-st-cannes2" remote="github" revision="1c9fbe94ad028d56dfdd13aa9672d4cea2b5646e"/>
 </manifest>
