@@ -27,14 +27,12 @@
   <project remote="yocto" name="git/meta-freescale" path="layers/meta-freescale" revision="4cb517972b520066fa064f47624635eb3ea41cb2"/>
 
   <!-- LEDGE -->
-  <project remote="github" name="Linaro/meta-ledge" path="layers/meta-ledge" revision="1b95e736bb6ede8f1f88ea0abff34e466e4e80c5">
+  <project remote="github" name="Linaro/meta-ledge" path="layers/meta-ledge" revision="3f7a6d3139419ac5768174e5a813b643d27cde43">
         <linkfile dest="setup-environment" src="../../.repo/manifests/setup-environment"/>
  </project>
 
  <project remote="github" name="advancedtelematic/meta-updater" path="layers/meta-updater" revision="sumo"/>
  
- <project remote="github" name="MarvellEmbeddedProcessors/meta-marvell" path="layers/meta-marvel" revision="krogoth"/>
-
   <!--osf
   <project name="core-containers" path="containers/core-containers" remote="OpenSourceFoundries" revision="decce9f0e42cb9d20f1799f394efdf715ba72f21" />
   <project name="extra-containers" path="containers/extra-containers" remote="OpenSourceFoundries" revision="692eb049814f9b6282a30f8f606f1d4e1790075b" />
