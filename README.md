@@ -43,13 +43,13 @@ Setup Environment
 MACHINE values can be:
 * ledge-ti-am572x
 * ledge-stih410-b2260
+* ledge-espressobin
 
 DISTRO values can be:
 * rpb
 
 ```
-. setup-environment
-MACHINE=<machine> DISTRO=<distro> bitbake rpb-ltd-gateway-image
+MACHINE=<machine> DISTRO=<distro> source ./setup-environment
 ```
 e.g. DISTRO=rpb MACHINE=ledge-ti-am572x source ./setup-environment
 
