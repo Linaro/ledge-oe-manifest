@@ -9,29 +9,29 @@
   <remote fetch="https://github.com/OpenSourceFoundries" name="OpenSourceFoundries" />
 
 
-  <project name="openembedded/bitbake" path="bitbake" revision="6a9d86998fdd42b13690f024af33b6bf36b9d028"/>
-  <project name="openembedded/openembedded-core" path="layers/openembedded-core" revision="6ecb10e3952af4a77bc79160ecd81117e97d022a"/>
-  <project name="openembedded/meta-openembedded" path="layers/meta-openembedded" revision="b0950aeff5b630256bb5e25ca15f4d59c115e7c1"/>
+  <project name="openembedded/bitbake" path="bitbake" revision="0cfc71d1a342b82781b0ba547421e41f6340902a"/>
+  <project name="openembedded/openembedded-core" path="layers/openembedded-core" revision="4f22710f9a310412f1de0b4e6905c058ec416f25"/>
+  <project name="openembedded/meta-openembedded" path="layers/meta-openembedded" revision="a15d7f6ebcb0ed76c83c28f854d55e3f9d5b3677"/>
 
-  <project remote="linaro" name="openembedded/meta-linaro" path="layers/meta-linaro" revision="282b47a10940c26854c1cca0ec40950192af16fc"/>
+  <project remote="linaro" name="openembedded/meta-linaro" path="layers/meta-linaro" revision="edb7ffc2a121df7596385595abe75180296103e0"/>
   <!--project name="linaro-technologies/meta-ltd" path="layers/meta-ltd" revision="2b9370f35dd3b5f2dde2ae165095406547162ba6"/-->
 
-  <project name="git/meta-yocto" path="layers/meta-yocto" remote="yocto" revision="eb759d24a69da5d649386a333461f4f226920f0d"/>¬
-  <project name="git/meta-ti" path="layers/meta-ti" remote="yocto" revision="66769ae4a7a6ce3c5bf5085825aca423665eab41" branch="master" />
-  <project name="git/meta-virtualization" path="layers/meta-virtualization" remote="yocto" revision="43e4cd760f2ff1d4bca1ae18bac052db41716989" />
+  <project name="git/meta-yocto" path="layers/meta-yocto" remote="yocto" revision="b5aa0db24dae27e4e66773767ea72f0e3c7c57de"/>¬
+  <project name="git/meta-ti" path="layers/meta-ti" remote="yocto" revision="53f0eecf8729c79b664a134a74659c515cb39c7a" branch="master" />
+  <project name="git/meta-virtualization" path="layers/meta-virtualization" remote="yocto" revision="cf352d74935ec17964700f5b4f86f9a63b3a2183" />
 
-  <project name="96boards/meta-rpb" path="layers/meta-rpb" remote="github" revision="sumo" />
+  <project name="96boards/meta-rpb" path="layers/meta-rpb" remote="github" revision="7bc77f5243f39759028199160e69b90895eb6abf" />
 
   <!-- BSP -->
-  <project name="Freescale/meta-freescale-3rdparty" path="layers/meta-freescale-3rdparty" revision="314291fb1083048a3553392feb8012853bf37570"/>
-  <project remote="yocto" name="git/meta-freescale" path="layers/meta-freescale" revision="4cb517972b520066fa064f47624635eb3ea41cb2"/>
+  <project name="Freescale/meta-freescale-3rdparty" path="layers/meta-freescale-3rdparty" revision="6e2ad96fce82bb7a12bba506ac15511752c4f007"/>
+  <project remote="yocto" name="git/meta-freescale" path="layers/meta-freescale" revision="9c801795c886578bc4cd72d040143b18532b145d"/>
 
   <!-- LEDGE -->
-  <project remote="github" name="Linaro/meta-ledge" path="layers/meta-ledge" revision="3f7a6d3139419ac5768174e5a813b643d27cde43">
+  <project remote="github" name="Linaro/meta-ledge" path="layers/meta-ledge" revision="6bb7aefb6ac8f3d3ef0d414f3b77f37251ee2178">
         <linkfile dest="setup-environment" src="../../.repo/manifests/setup-environment"/>
  </project>
 
- <project remote="github" name="advancedtelematic/meta-updater" path="layers/meta-updater" revision="sumo"/>
+ <project remote="github" name="advancedtelematic/meta-updater" path="layers/meta-updater" revision="04892ec7c55a10f76f928803918d18d1aa7cf482"/>
  
   <!--osf
   <project name="core-containers" path="containers/core-containers" remote="OpenSourceFoundries" revision="decce9f0e42cb9d20f1799f394efdf715ba72f21" />
