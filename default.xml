@@ -4,21 +4,22 @@
   <remote fetch="http://git.linaro.org" name="linaro"/>
   <remote fetch="http://git.yoctoproject.org" name="yocto"/>
 
-  <default remote="github" revision="thud" sync-j="4"/>
+  <default remote="github" revision="7933fd19fe1df357df0532d3983c10d014e8d5f6" sync-j="4"/>
 
-  <project name="openembedded/bitbake" path="bitbake" revision="1.40"/>
+  <project name="openembedded/bitbake" path="bitbake" revision="b59cb2bc63940b9ebd8288de7ca4b1d9e96e026c"/>
   <project name="openembedded/meta-linaro" path="layers/meta-linaro" remote="linaro" revision="edb7ffc2a121df7596385595abe75180296103e0"/>
   <project name="openembedded/meta-openembedded" path="layers/meta-openembedded" revision="6094ae18c8a35e5cc9998ac39869390d7f3bb1e2"/>
   <project name="openembedded/openembedded-core" path="layers/openembedded-core" revision="75cd4edaa8a42f76c0594ce26df05c7a51d620df"/>
 
-  <project name="96boards/meta-rpb" path="layers/meta-rpb" revision="6154d8e23b59948e18fe1e423dc622731aa0112d""/>
+  <project name="96boards/meta-rpb" path="layers/meta-rpb" revision="6154d8e23b59948e18fe1e423dc622731aa0112d"/>
   <project name="Freescale/meta-freescale-3rdparty" path="layers/meta-freescale-3rdparty" revision="56021ac593b6a3f4ed7be351d8f4358a19d8e87a"/>
-  <project name="Linaro/meta-ledge" path="layers/meta-ledge" revision="d1a61067131b81e8d1e56466687fb0303340d86b>
+  <project name="Linaro/meta-ledge" path="layers/meta-ledge" revision="1cb7b9d750112dbca3014deaa843948f5a1cfdc7">
     <linkfile dest="setup-environment" src="../../.repo/manifests/setup-environment"/>
   </project>
   <project name="advancedtelematic/meta-updater" path="layers/meta-updater" revision="04892ec7c55a10f76f928803918d18d1aa7cf482"/>
   <project name="git/meta-freescale" path="layers/meta-freescale" remote="yocto" revision="1ec2c308da65f7ad49b99a3100912ae0b5e1dac3"/>
   <project name="git/meta-ti" path="layers/meta-ti" remote="yocto" revision="06192ea1216f7d18ebac005ac71cd259a67d703e"/>
-  <project name="git/meta-virtualization" path="layers/meta-virtualization" remote="yocto" revision="cf352d74935ec17964700f5b4f86f9a63b3a2183"/>
-  <project name="kraj/meta-clang" path="layers/meta-clang" revision="thud"/>
+  <project name="git/meta-virtualization" path="layers/meta-virtualization" remote="yocto" revision="9e8c0c96b443828a255e7d6ca6291598347672ac"/>
+  <project name="git/meta-selinux" path="layers/meta-selinux" remote="yocto" revision="fb6192aa2c5df8e80c5e6d4fa5448d574332f68f"/>
+  <project name="kraj/meta-clang" path="layers/meta-clang" revision="7933fd19fe1df357df0532d3983c10d014e8d5f6"/>
 </manifest>
