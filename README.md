@@ -42,29 +42,36 @@ Setup Environment
 
 MACHINE values can be:
 * ledge-ti-am572x
-* ledge-stih410-b2260
+* ledge-stm32mp157c-dk2
+* ledge-qemuarm
+* ledge-qemuarm64
+* ledge-qemux86-64
+* ledge-hummingboard2
 * ledge-espressobin
+
 
 DISTRO values can be:
 * rpb
+* rpb-sota
 
 ```
 MACHINE=<machine> DISTRO=<distro> source ./setup-environment
 ```
-e.g. DISTRO=rpb MACHINE=ledge-ti-am572x source ./setup-environment
-
-     bitbake ledge-gateway
+example 
+```
+DISTRO=rpb MACHINE=ledge-ti-am572x source ./setup-environment
+bitbake ledge-gateway 
+```
 
 Creating a local topic branch
 -----------------------------
 
 If you need to create local branches for all repos which then can be done e.g.
 ```
-~/bin/repo start myangstrom --all
+~/bin/repo start <new branch> --all
 ```
-Where 'myangstrom' is the name of branch you choose
 
-Updating the sandbox
+Updating
 --------------------
 
 If you need to bring changes from upstream then use following commands
