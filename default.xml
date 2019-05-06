@@ -13,7 +13,7 @@
 
   <project name="96boards/meta-rpb" path="layers/meta-rpb" revision="fa83449358b83ae4daa057f7b1062f15ee06c506"/>
   <project name="Freescale/meta-freescale-3rdparty" path="layers/meta-freescale-3rdparty" revision="c4b5ac6b20e4245ce0630e9197313aaef999a331"/>
-  <project name="Linaro/meta-ledge" path="layers/meta-ledge" revision="2e011817830cd8c6a3f063a2f170a796ce39978d">
+  <project name="Linaro/meta-ledge" path="layers/meta-ledge" revision="d6c06a94f85b4577a02a829cbee64bf6e49f983c">
     <linkfile dest="setup-environment" src="../../.repo/manifests/setup-environment"/>
   </project>
   <project name="advancedtelematic/meta-updater" path="layers/meta-updater" revision="2d2e46834af68b1c22ad0a022001c117caa4929c"/>
