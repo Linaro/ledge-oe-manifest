@@ -24,4 +24,5 @@
   <project name="kraj/meta-clang" path="layers/meta-clang" revision="7933fd19fe1df357df0532d3983c10d014e8d5f6"/>
   <project name="git/meta-security" path="layers/meta-security" remote="yocto" revision="31dc4e7532fa7a82060e0b50e5eb8d0414aa7e93"/>
   <project name="git/meta-cloud-services" path="layers/meta-cloud-services" remote ="yocto" revision="43ca2e54a87be30b718654e0e47d57605d841237"/>
+  <project name="jiazhang0/meta-secure-core" path="layers/meta-secure-core" revision="db22483ff3e2b5f70030c12b2d40bcfeae028a32"/>
 </manifest>
