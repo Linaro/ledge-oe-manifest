@@ -37,7 +37,7 @@ More rarely, Linux clients experience connectivity issues, getting stuck in the 
 sudo sysctl -w net.ipv4.tcp_window_scaling=0
 repo sync -j1
 ```
-Setup Environment
+1. Setup Environment
 -----------------
 
 MACHINE values can be:
@@ -60,8 +60,22 @@ MACHINE=<machine> DISTRO=<distro> source ./setup-environment
 example 
 ```
 DISTRO=rpb MACHINE=ledge-ti-am572x source ./setup-environment
+```
+
+2. Build Image
+-----------------
+```
 bitbake ledge-gateway 
 ```
+
+3. Run virtual machine with the image
+-------------------------------------
+```
+runqemu ledge-qemux86-64 nographic
+```
+
+(you should see that kernel then apps boots, and you will be able to login inside vm.)
+
 
 Creating a local topic branch
 -----------------------------
