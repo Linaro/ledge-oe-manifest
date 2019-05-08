@@ -49,10 +49,13 @@ MACHINE values can be:
 * ledge-hummingboard2
 * ledge-espressobin
 
-
 DISTRO values can be:
 * rpb
 * rpb-sota
+
+bitbake targets can be:
+* ledge-gateway
+* ledge-iot
 
 ```
 MACHINE=<machine> DISTRO=<distro> source ./setup-environment
@@ -65,7 +68,9 @@ DISTRO=rpb MACHINE=ledge-ti-am572x source ./setup-environment
 2. Build Image
 -----------------
 ```
-bitbake ledge-gateway 
+bitbake ledge-gateway
+or
+bitbake ledge-iot
 ```
 
 3. Run virtual machine with the image
