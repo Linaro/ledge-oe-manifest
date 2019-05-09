@@ -76,7 +76,7 @@ bitbake ledge-iot
 3. Run virtual machine with the image
 -------------------------------------
 ```
-runqemu ledge-qemux86-64 nographic
+runqemu ledge-qemux86-64 nographic qemuparams="-m 4096"
 ```
 
 (you should see that kernel then apps boots, and you will be able to login inside vm.)
