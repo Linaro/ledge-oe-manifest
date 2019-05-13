@@ -11,7 +11,7 @@
   <project name="openembedded/meta-openembedded" path="layers/meta-openembedded" revision="2154631d355c425a8e98b4a9d336bf2558ecfd1b"/>
   <project name="openembedded/openembedded-core" path="layers/openembedded-core" revision="ad0a553f0bbdbed5f78a27162289a1e358580dcc"/>
 
-  <project name="96boards/meta-rpb" path="layers/meta-rpb" revision="fa83449358b83ae4daa057f7b1062f15ee06c506"/>
+  <project name="96boards/meta-rpb" path="layers/meta-rpb" revision="82b800cb531eeed286214c1e6e1925c706bbbf54"/>
   <project name="Freescale/meta-freescale-3rdparty" path="layers/meta-freescale-3rdparty" revision="c4b5ac6b20e4245ce0630e9197313aaef999a331"/>
   <project name="Linaro/meta-ledge" path="layers/meta-ledge" revision="2d662a3a52530f0936a7bfafc7039b5d659a3579">
     <linkfile dest="setup-environment" src="../../.repo/manifests/setup-environment"/>
