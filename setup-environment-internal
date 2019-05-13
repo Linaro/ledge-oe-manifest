@@ -344,10 +344,10 @@ fi
 
 cat <<EOF
 
-Welcome to OpenEmbedded Reference Platform Build (OE RPB)
+Welcome to LEDGE OpenEmbedded Reference Platform Build
 
-For more information about OpenEmbedded see their website:
-    http://www.openembedded.org/
+For more information about LEDGE RP see website:
+    http://www.linaro.org/
 
 Your build environemnt has been configured with:
 
@@ -355,15 +355,5 @@ Your build environemnt has been configured with:
     SDKMACHINE = ${SDKMACHINE}
     DISTRO = ${DISTRO}
 
-You can now run 'bitbake <target>'
-
-Some of common targets are:
-    rpb-console-image
-    rpb-desktop-image
-    rpb-weston-image
-    core-image-base
-    
-    lmp-gateway-image
-    core-image-minimal
-
+You can now run 'bitbake ledge-iot'
 EOF
