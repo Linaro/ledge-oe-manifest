@@ -72,11 +72,19 @@ bitbake ledge-gateway
 or
 bitbake ledge-iot
 ```
+3. SELinux
+----------
+All ledge-generated images enable SELinux by default on permissive mode
+if you want to disable it use selinux=0 on the kernel cmdline
 
-3. Run virtual machine with the image
+4. Run virtual machine with the image
 -------------------------------------
 ```
+With SELinux
 runqemu ledge-qemux86-64 nographic qemuparams="-m 4096"
+
+Without SELinux
+runqemu ledge-qemux86-64 nographic qemuparams="-m 4096" bootparams="selinux=0"
 ```
 
 (you should see that kernel then apps boots, and you will be able to login inside vm.)
