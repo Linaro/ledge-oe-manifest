@@ -25,4 +25,5 @@
   <project name="git/meta-security" path="layers/meta-security" remote="yocto" revision="27ddb455543b670097e252ba0d0ad5b7e4101748"/>
   <project name="git/meta-cloud-services" path="layers/meta-cloud-services" remote ="yocto" revision="fcf43a2b0a9ca101dd0c4b3d3f7b9fe0278e7173"/>
   <project name="jiazhang0/meta-secure-core" path="layers/meta-secure-core" revision="e3678e964c523c6db769f3076ccedbb659b261e4"/>
+  <project name="96boards/meta-96boards" path="layers/meta-96boards" revision="402097e799e18fe3ded651a595eef74eb25cc82c"/>
 </manifest>
