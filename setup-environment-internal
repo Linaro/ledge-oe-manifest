@@ -240,6 +240,11 @@ ln -sf "${MANIFESTS}"/README.md README.md
 
 ln -sf "${MANIFESTS}" "${OEROOT}"/layers/
 
+echo "Applying ledge  patches"
+cd "${OEROOT}"/layers
+patch -p1 < ${MANIFESTS}/patches/*.patch
+cd -
+
 DISTRO_DIRNAME=$(echo "${DISTRO}" | sed 's#[.-]#_#g')
 
 cat > conf/auto.conf <<EOF
