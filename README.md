@@ -72,6 +72,7 @@ bitbake ledge-gateway
 or
 bitbake ledge-iot
 ```
+
 3. SELinux
 ----------
 All ledge-generated images enable SELinux by default on permissive mode
@@ -80,15 +81,17 @@ if you want to disable it use selinux=0 on the kernel cmdline
 4. Run virtual machine with the image
 -------------------------------------
 ```
-With SELinux
-runqemu ledge-qemux86-64 nographic qemuparams="-m 4096"
+Navigate to build image directory:
+cd ./build-rpb/tmp-rpb-glibc/deploy/images/ledge-qemuarm64
 
-Without SELinux
-runqemu ledge-qemux86-64 nographic qemuparams="-m 4096" bootparams="selinux=0"
+Then run:
+runqemu ledge-qemuarm64 wic
+
 ```
+(you should see that tfa, optee, uboot, kernel then apps boots, then you will be able automaticaly login inside ledge rp.)
 
-(you should see that kernel then apps boots, and you will be able to login inside vm.)
-
+Note: On first boot SElinux re-labeling will force a reboot which currently hangs using TF-A.
+Restart the QEMU process manually and the image will run properly.
 
 Creating a local topic branch
 -----------------------------
