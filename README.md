@@ -93,6 +93,25 @@ runqemu ledge-qemuarm64 wic
 Note: On first boot SElinux re-labeling will force a reboot which currently hangs using TF-A.
 Restart the QEMU process manually and the image will run properly.
 
+5. fTPM in QEMU
+Firmware TPM needs a dedicated storage. Since on current QEMU platforms that
+storage is provided by the TEE supplicant, TPM is only operational when linux
+has fully booted. Since the supplicant launches after loading the the fTPM
+module an error will appear during boot. 
+
+```
+[   17.344677] ftpm-tee tpm@0: ftpm_tee_probe: tee_client_open_session failed, err=ffff000c
+[   17.345126] ftpm-tee: probe of tpm@0 failed with error -22
+```
+
+To make TPM operational do: 
+```
+~ # rmmod tpm_ftpm_tee && modprobe tpm_ftpm_tee
+~ # tpm2_getrandom 8
+0x6A 0x4C 0x8E 0x47 0x30 0xBC 0x46 0xD3
+~ #
+```
+
 Creating a local topic branch
 -----------------------------
 
