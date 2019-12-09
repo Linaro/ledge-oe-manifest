@@ -72,6 +72,7 @@ bitbake ledge-gateway
 or
 bitbake ledge-iot
 ```
+
 3. SELinux
 ----------
 All ledge-generated images enable SELinux by default on permissive mode
@@ -80,15 +81,36 @@ if you want to disable it use selinux=0 on the kernel cmdline
 4. Run virtual machine with the image
 -------------------------------------
 ```
-With SELinux
-runqemu ledge-qemux86-64 nographic qemuparams="-m 4096"
+Navigate to build image directory:
+cd ./build-rpb/tmp-rpb-glibc/deploy/images/ledge-qemuarm64
 
-Without SELinux
-runqemu ledge-qemux86-64 nographic qemuparams="-m 4096" bootparams="selinux=0"
+Then run:
+runqemu ledge-qemuarm64 wic
+
+```
+(you should see that tfa, optee, uboot, kernel then apps boots, then you will be able automaticaly login inside ledge rp.)
+
+Note: On first boot SElinux re-labeling will force a reboot which currently hangs using TF-A.
+Restart the QEMU process manually and the image will run properly.
+
+5. fTPM in QEMU
+Firmware TPM needs a dedicated storage. Since on current QEMU platforms that
+storage is provided by the TEE supplicant, TPM is only operational when linux
+has fully booted. Since the supplicant launches after loading the the fTPM
+module an error will appear during boot. 
+
+```
+[   17.344677] ftpm-tee tpm@0: ftpm_tee_probe: tee_client_open_session failed, err=ffff000c
+[   17.345126] ftpm-tee: probe of tpm@0 failed with error -22
 ```
 
-(you should see that kernel then apps boots, and you will be able to login inside vm.)
-
+To make TPM operational do: 
+```
+~ # rmmod tpm_ftpm_tee && modprobe tpm_ftpm_tee
+~ # tpm2_getrandom 8
+0x6A 0x4C 0x8E 0x47 0x30 0xBC 0x46 0xD3
+~ #
+```
 
 Creating a local topic branch
 -----------------------------
