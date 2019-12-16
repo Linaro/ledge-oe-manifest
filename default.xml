@@ -6,24 +6,24 @@
 
   <default remote="github" revision="7933fd19fe1df357df0532d3983c10d014e8d5f6" sync-j="4"/>
 
-  <project name="openembedded/bitbake" path="bitbake" revision="f7a973604fbfd1059875ff1fabb3f885df9c5b95"/>
+  <project name="openembedded/bitbake" path="bitbake" revision="8569ccb5e9fbdeaaf96b78bd02a263b26de54059"/>
   <project name="openembedded/meta-linaro" path="layers/meta-linaro" remote="linaro" revision="674ce19e685233994052c8f6e4c133377076ea40"/>
   <project name="openembedded/meta-openembedded" path="layers/meta-openembedded" revision="1bfaa2e63a184e21a2db5c286444828d5948a8b4"/>
-  <project name="openembedded/openembedded-core" path="layers/openembedded-core" revision="5607d38af39294bf97a878b414a0212278b66b2c"/>
+  <project name="openembedded/openembedded-core" path="layers/openembedded-core" revision="75a4cabf55e13e6714c0fdb229cd51b5184ddbef"/>
 
-  <project name="96boards/meta-rpb" path="layers/meta-rpb" revision="8816f45e17f7b724aaade7125a851c504017e69c"/>
+  <project name="96boards/meta-rpb" path="layers/meta-rpb" revision="50f5ac07d54900292843222206eaeb8497c65b10"/>
   <project name="Freescale/meta-freescale-3rdparty" path="layers/meta-freescale-3rdparty" revision="aea3771baa77e74762358ceb673d407e36637e5f"/>
   <project name="Linaro/meta-ledge" path="layers/meta-ledge" revision="zeus">
     <linkfile dest="setup-environment" src="../../.repo/manifests/setup-environment"/>
   </project>
-  <project name="advancedtelematic/meta-updater" path="layers/meta-updater" revision="22165a78b34583c1389c0c9c5841c5377bad6e10"/>
+  <project name="advancedtelematic/meta-updater" path="layers/meta-updater" revision="693a61a7a342a78adf74d893674f480ff4475f4f"/>
   <project name="git/meta-freescale" path="layers/meta-freescale" remote="yocto" revision="218e7c48e6d7b95f61a9991c0d3c3bf4b38a34c4"/>
   <project name="git/meta-ti" path="layers/meta-ti" remote="yocto" revision="6514f160c3e54e91d866f25b86e7c691b3ebe81b"/>
-  <project name="git/meta-virtualization" path="layers/meta-virtualization" remote="yocto" revision="062d9f1f4faf2ca8a1fe78b7c7365e6378c15836"/>
-  <project name="git/meta-selinux" path="layers/meta-selinux" remote="yocto" revision="44d760413920ba440439b8bc7c2a71ca26cd7a2d"/>
+  <project name="git/meta-virtualization" path="layers/meta-virtualization" remote="yocto" revision="f4262ab75d36a06c528cc1630b48b817fb0acf8f"/>
+  <project name="git/meta-selinux" path="layers/meta-selinux" remote="yocto" revision="5fd3c5b71edb99659aeb5cb5903088d84517382e"/>
   <project name="kraj/meta-clang" path="layers/meta-clang" revision="d87c406c0f54e0e1ad4fb6aa2d0ecba93136139d"/>
-  <project name="git/meta-security" path="layers/meta-security" remote="yocto" revision="27ddb455543b670097e252ba0d0ad5b7e4101748"/>
-  <project name="git/meta-cloud-services" path="layers/meta-cloud-services" remote ="yocto" revision="fcf43a2b0a9ca101dd0c4b3d3f7b9fe0278e7173"/>
-  <project name="jiazhang0/meta-secure-core" path="layers/meta-secure-core" revision="e3678e964c523c6db769f3076ccedbb659b261e4"/>
+  <project name="git/meta-security" path="layers/meta-security" remote="yocto" revision="4dd38351502a4b266d8eba958ca0661d9f85d0ba"/>
+  <project name="git/meta-cloud-services" path="layers/meta-cloud-services" remote ="yocto" revision="b8c25f63ab9124fe911165205d17808b9a7dead0"/>
+  <project name="jiazhang0/meta-secure-core" path="layers/meta-secure-core" revision="5698bb8529554eccdea898aadbe0b10e7385e661"/>
   <project name="96boards/meta-96boards" path="layers/meta-96boards" revision="402097e799e18fe3ded651a595eef74eb25cc82c"/>
 </manifest>
