@@ -242,7 +242,7 @@ ln -sf "${MANIFESTS}" "${OEROOT}"/layers/
 
 echo "Applying ledge  patches"
 cd "${OEROOT}"/layers
-patch -p1 --forward --reject-file=- < ${MANIFESTS}/patches/*.patch
+for patch in `ls ${MANIFESTS}/patches/*.patch`; do patch -p1 --forward --reject-file=- < ${patch}; done
 cd -
 
 DISTRO_DIRNAME=$(echo "${DISTRO}" | sed 's#[.-]#_#g')
