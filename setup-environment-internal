@@ -237,6 +237,9 @@ sha512sum "${MANIFESTS}"/setup-environment-internal 2>&1 > conf/checksum
 ln -sf "${MANIFESTS}"/conf/local.conf conf/local.conf
 ln -sf "${MANIFESTS}"/conf/bblayers.conf conf/bblayers.conf
 ln -sf "${MANIFESTS}"/README.md README.md
+if [ -d "${MANIFESTS}"/conf/multiconfig ]; then
+    ln -sf "${MANIFESTS}"/conf/multiconfig conf/multiconfig
+fi
 
 ln -sf "${MANIFESTS}" "${OEROOT}"/layers/
 
@@ -251,6 +254,7 @@ cat > conf/auto.conf <<EOF
 DISTRO ?= "${DISTRO}"
 MACHINE ?= "${MACHINE}"
 SDKMACHINE ?= "${SDKMACHINE}"
+BBMULTICONFIG ?= ""
 
 # Extra options that can be changed by the user
 INHERIT += "rm_work"
@@ -360,5 +364,19 @@ Your build environemnt has been configured with:
     SDKMACHINE = ${SDKMACHINE}
     DISTRO = ${DISTRO}
 
-You can now run 'bitbake ledge-iot'
+Build for a specific MACHINE:
+	bitbake ledge-iot
+	bitbake ledge-gateway
+Build on multiconfig:
+	- set the config to use on auto.conf with BBMULTICONFIG variable
+	  export BBMULTICONFIG="qemuarm stm32mp157c-dk2 ti-am572x"
+	  sed -e "s%^BBMULTICONFIG ?= .*$%BBMULTICONFIG ?= \"${MULTICONFIG}\"%" -i conf/auto.conf
+	- Build with multiconfig
+	  MACHINE=ledge-qemuarm bitbake \
+		mc:qemuarm:ledge-gateway \
+		mc:qemuarm:ledge-iot \
+		mc:stm32mp157c-dk2:u-boot-ledge mc:stm32mp157c-dk2:optee-os mc:stm32mp157c-dk2:arm-trusted-firmware-ledge \
+		mc:ti-am572x:u-boot-ledge mc:ti-am572x:optee-os
+
+For futher insformation read conf/multiconfig/README.txt
 EOF
