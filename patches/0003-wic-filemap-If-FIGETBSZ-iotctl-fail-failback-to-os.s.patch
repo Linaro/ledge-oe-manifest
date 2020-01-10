@@ -15,8 +15,8 @@ Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 
 diff --git a/scripts/lib/wic/filemap.py b/scripts/lib/wic/filemap.py
 index a3919fbcad..c53147c2f1 100644
---- a/scripts/lib/wic/filemap.py
-+++ b/scripts/lib/wic/filemap.py
+--- a/openembedded-core/scripts/lib/wic/filemap.py
++++ b/openembedded-core/scripts/lib/wic/filemap.py
 @@ -34,9 +34,11 @@ def get_block_size(file_obj):
      # the FIGETBSZ ioctl (number 2).
      try:
