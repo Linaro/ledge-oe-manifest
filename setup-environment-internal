@@ -59,6 +59,23 @@ if [ $# -gt 1 ]; then
     usage
     return 1
 fi
+
+ORIG_MACHINE="$MACHINE"
+if [ "${MACHINE}" == "ledge-multi-armv7" ]; then
+	MACHINE="ledge-qemuarm"
+	BBMULTICONFIG="qemuarm stm32mp157c-dk2 ti-am572x"
+	FIRMWARE="mc:stm32mp157c-dk2:u-boot-ledge mc:stm32mp157c-dk2:optee-os mc:stm32mp157c-dk2:arm-trusted-firmware-ledge "
+	FIRMWARE+="mc:ti-am572x:u-boot-ledge mc:ti-am572x:optee-os"
+	export FIRMWARE
+fi
+
+if [ "${MACHINE}" == "ledge-multi-armv8" ]; then
+	MACHINE="ledge-qemuarm64"
+	BBMULTICONFIG="qemuarm64"
+	FIRMWARE=""
+	export FIRMWARE
+fi
+
 # create a common list of "<machine>(<layer>)", sorted by <machine>
 # Blacklist OE-core and meta-linaro, we only want 96boards + vendor layers
 MACHLAYERS=$(find layers -print | grep "conf/machine/.*\.conf" | grep -v scripts | grep -v openembedded-core | grep -v meta-linaro | sed -e 's/\.conf//g' -e 's/layers\///' | awk -F'/conf/machine/' '{print $NF "(" $1 ")"}' | LANG=C sort)
@@ -254,7 +271,7 @@ cat > conf/auto.conf <<EOF
 DISTRO ?= "${DISTRO}"
 MACHINE ?= "${MACHINE}"
 SDKMACHINE ?= "${SDKMACHINE}"
-BBMULTICONFIG ?= ""
+BBMULTICONFIG ?= "${BBMULTICONFIG}"
 
 # Extra options that can be changed by the user
 INHERIT += "rm_work"
@@ -363,20 +380,28 @@ Your build environemnt has been configured with:
     MACHINE = ${MACHINE}
     SDKMACHINE = ${SDKMACHINE}
     DISTRO = ${DISTRO}
+    FIRMWARE = ${FIRMWARE}
 
+EOF
+
+if [ "${ORIG_MACHINE}" == "ledge-multi-armv7" ]; then
+cat <<EOF
+Build with command:
+	bitbake mc:qemuarm:ledge-iot \${FIRMWARE}
+EOF
+return
+fi
+
+if [ "${ORIG_MACHINE}" == "ledge-multi-armv8" ]; then
+cat <<EOF
+Build with command:
+	bitbake mc:qemuarm64:ledge-iot \${FIRMWARE}
+EOF
+return
+fi
+
+cat <<EOF
 Build for a specific MACHINE:
 	bitbake ledge-iot
 	bitbake ledge-gateway
-Build on multiconfig:
-	- set the config to use on auto.conf with BBMULTICONFIG variable
-	  export BBMULTICONFIG="qemuarm stm32mp157c-dk2 ti-am572x"
-	  sed -e "s%^BBMULTICONFIG ?= .*$%BBMULTICONFIG ?= \"${MULTICONFIG}\"%" -i conf/auto.conf
-	- Build with multiconfig
-	  MACHINE=ledge-qemuarm bitbake \
-		mc:qemuarm:ledge-gateway \
-		mc:qemuarm:ledge-iot \
-		mc:stm32mp157c-dk2:u-boot-ledge mc:stm32mp157c-dk2:optee-os mc:stm32mp157c-dk2:arm-trusted-firmware-ledge \
-		mc:ti-am572x:u-boot-ledge mc:ti-am572x:optee-os
-
-For futher insformation read conf/multiconfig/README.txt
 EOF
