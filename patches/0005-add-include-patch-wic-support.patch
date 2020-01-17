@@ -1,0 +1,191 @@
+From d4cd27a9837426e809190548a83c6c7c76505114 Mon Sep 17 00:00:00 2001
+From: Paul Barker <pbarker@konsulko.com>
+Date: Wed, 8 Jan 2020 11:25:46 +0000
+Subject: [PATCH] wic: Add --include-path argument
+
+This option adds the contents of the given path to a partition built
+with the rootfs source plugin. The path is relative to the directory in
+which wic is running not the rootfs itself so use of an absolute path
+is recommended. This option is most useful when multiple copies of the
+rootfs are added to an image and it is required to add extra content to
+only one of these copies. This option only has an effect with the
+rootfs source plugin.
+
+Signed-off-by: Paul Barker <pbarker@konsulko.com>
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+---
+ meta/lib/oeqa/selftest/cases/wic.py      | 73 ++++++++++++++++++------
+ scripts/lib/wic/help.py                  | 10 ++++
+ scripts/lib/wic/ksparser.py              |  1 +
+ scripts/lib/wic/partition.py             |  1 +
+ scripts/lib/wic/plugins/source/rootfs.py |  7 ++-
+ 5 files changed, 72 insertions(+), 20 deletions(-)
+
+diff --git a/meta/lib/oeqa/selftest/cases/wic.py b/meta/lib/oeqa/selftest/cases/wic.py
+index 3c5be2f5016..46cd98b1934 100644
+--- a/openembedded-core/meta/lib/oeqa/selftest/cases/wic.py
++++ b/openembedded-core/meta/lib/oeqa/selftest/cases/wic.py
+@@ -44,6 +44,24 @@ def wrapped_f(*args, **kwargs):
+         return wrapped_f
+     return wrapper
+ 
++def extract_files(debugfs_output):
++    """
++    extract file names from the output of debugfs -R 'ls -p',
++    which looks like this:
++
++     /2/040755/0/0/.//\n
++     /2/040755/0/0/..//\n
++     /11/040700/0/0/lost+found^M//\n
++     /12/040755/1002/1002/run//\n
++     /13/040755/1002/1002/sys//\n
++     /14/040755/1002/1002/bin//\n
++     /80/040755/1002/1002/var//\n
++     /92/040755/1002/1002/tmp//\n
++    """
++    # NOTE the occasional ^M in file names
++    return [line.split('/')[5].strip() for line in \
++            debugfs_output.strip().split('/\n')]
++
+ 
+ class WicTestCase(OESelftestTestCase):
+     """Wic test class."""
+@@ -393,24 +411,6 @@ def test_exclude_path(self):
+                 runCmd("dd if=%s of=%s skip=%d count=%d" %
+                                            (wicimg, part_file, start, length))
+ 
+-            def extract_files(debugfs_output):
+-                """
+-                extract file names from the output of debugfs -R 'ls -p',
+-                which looks like this:
+-
+-                 /2/040755/0/0/.//\n
+-                 /2/040755/0/0/..//\n
+-                 /11/040700/0/0/lost+found^M//\n
+-                 /12/040755/1002/1002/run//\n
+-                 /13/040755/1002/1002/sys//\n
+-                 /14/040755/1002/1002/bin//\n
+-                 /80/040755/1002/1002/var//\n
+-                 /92/040755/1002/1002/tmp//\n
+-                """
+-                # NOTE the occasional ^M in file names
+-                return [line.split('/')[5].strip() for line in \
+-                        debugfs_output.strip().split('/\n')]
+-
+             # Test partition 1, should contain the normal root directories, except
+             # /usr.
+             res = runCmd("debugfs -R 'ls -p' %s 2>/dev/null" % \
+@@ -451,6 +451,43 @@ def extract_files(debugfs_output):
+         finally:
+             os.environ['PATH'] = oldpath
+ 
++    def test_include_path(self):
++        """Test --include-path wks option."""
++
++        oldpath = os.environ['PATH']
++        os.environ['PATH'] = get_bb_var("PATH", "wic-tools")
++
++        try:
++            include_path = os.path.join(self.resultdir, 'test-include')
++            os.makedirs(include_path)
++            with open(os.path.join(include_path, 'test-file'), 'w') as t:
++                t.write("test\n")
++            wks_file = os.path.join(include_path, 'temp.wks')
++            with open(wks_file, 'w') as wks:
++                rootfs_dir = get_bb_var('IMAGE_ROOTFS', 'core-image-minimal')
++                wks.write("""
++part /part1 --source rootfs --ondisk mmcblk0 --fstype=ext4
++part /part2 --source rootfs --ondisk mmcblk0 --fstype=ext4 --include-path %s"""
++                          % (include_path))
++            runCmd("wic create %s -e core-image-minimal -o %s" \
++                                       % (wks_file, self.resultdir))
++
++            part1 = glob(os.path.join(self.resultdir, 'temp-*.direct.p1'))[0]
++            part2 = glob(os.path.join(self.resultdir, 'temp-*.direct.p2'))[0]
++
++            # Test partition 1, should not contain 'test-file'
++            res = runCmd("debugfs -R 'ls -p' %s 2>/dev/null" % (part1))
++            files = extract_files(res.output)
++            self.assertNotIn('test-file', files)
++
++            # Test partition 2, should not contain 'test-file'
++            res = runCmd("debugfs -R 'ls -p' %s 2>/dev/null" % (part2))
++            files = extract_files(res.output)
++            self.assertIn('test-file', files)
++
++        finally:
++            os.environ['PATH'] = oldpath
++
+     def test_exclude_path_errors(self):
+         """Test --exclude-path wks option error handling."""
+         wks_file = 'temp.wks'
+diff --git a/scripts/lib/wic/help.py b/scripts/lib/wic/help.py
+index 29c4e436d8c..4d342fcf050 100644
+--- a/scripts/lib/wic/help.py
++++ b/scripts/lib/wic/help.py
+@@ -969,6 +969,16 @@ class (see the SourcePlugin source for details):
+                          is omitted, not the directory itself. This option only
+                          has an effect with the rootfs source plugin.
+ 
++         --include-path: This option is specific to wic. It adds the contents
++                         of the given path to the resulting image. The path is
++                         relative to the directory in which wic is running not
++                         the rootfs itself so use of an absolute path is
++                         recommended. This option is most useful when multiple
++                         copies of the rootfs are added to an image and it is
++                         required to add extra content to only one of these
++                         copies. This option only has an effect with the rootfs
++                         source plugin.
++
+          --extra-space: This option is specific to wic. It adds extra
+                         space after the space filled by the content
+                         of the partition. The final size can go
+diff --git a/scripts/lib/wic/ksparser.py b/scripts/lib/wic/ksparser.py
+index 6a643ba3af5..707a2e80196 100644
+--- a/scripts/lib/wic/ksparser.py
++++ b/scripts/lib/wic/ksparser.py
+@@ -137,6 +137,7 @@ def __init__(self, confpath):
+         part.add_argument('--active', action='store_true')
+         part.add_argument('--align', type=int)
+         part.add_argument('--exclude-path', nargs='+')
++        part.add_argument('--include-path', nargs='+')
+         part.add_argument("--extra-space", type=sizetype)
+         part.add_argument('--fsoptions', dest='fsopts')
+         part.add_argument('--fstype', default='vfat',
+diff --git a/scripts/lib/wic/partition.py b/scripts/lib/wic/partition.py
+index d809408e1a2..2d95f78439b 100644
+--- a/scripts/lib/wic/partition.py
++++ b/scripts/lib/wic/partition.py
+@@ -30,6 +30,7 @@ def __init__(self, args, lineno):
+         self.device = None
+         self.extra_space = args.extra_space
+         self.exclude_path = args.exclude_path
++        self.include_path = args.include_path
+         self.fsopts = args.fsopts
+         self.fstype = args.fstype
+         self.label = args.label
+diff --git a/scripts/lib/wic/plugins/source/rootfs.py b/scripts/lib/wic/plugins/source/rootfs.py
+index e26e95b9913..705aeb55637 100644
+--- a/scripts/lib/wic/plugins/source/rootfs.py
++++ b/scripts/lib/wic/plugins/source/rootfs.py
+@@ -71,7 +71,7 @@ def do_prepare_partition(cls, part, source_params, cr, cr_workdir,
+ 
+         new_rootfs = None
+         # Handle excluded paths.
+-        if part.exclude_path is not None:
++        if part.exclude_path or part.include_path:
+             # We need a new rootfs directory we can delete files from. Copy to
+             # workdir.
+             new_rootfs = os.path.realpath(os.path.join(cr_workdir, "rootfs%d" % part.lineno))
+@@ -81,7 +81,10 @@ def do_prepare_partition(cls, part, source_params, cr, cr_workdir,
+ 
+             copyhardlinktree(part.rootfs_dir, new_rootfs)
+ 
+-            for orig_path in part.exclude_path:
++            for path in part.include_path or []:
++                copyhardlinktree(path, new_rootfs)
++
++            for orig_path in part.exclude_path or []:
+                 path = orig_path
+                 if os.path.isabs(path):
+                     logger.error("Must be relative: --exclude-path=%s" % orig_path)
