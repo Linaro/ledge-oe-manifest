@@ -1,0 +1,36 @@
+From c68d8a37ba4348fe1c0e75c63b5668187d326ec2 Mon Sep 17 00:00:00 2001
+From: Maxim Uvarov <maxim.uvarov@linaro.org>
+Date: Sat, 18 Jan 2020 00:46:12 +0300
+Subject: [PATCH] wic: fix images build in parallel
+
+OE wic plugins create temporary file with the index of the line
+tmp file name. This causes race in case several builds run in time.
+If source_params['file'] is an absolute path, the cr_workdir prefix
+is not applied by os.path.join(). So instead it writes to a ".1"
+file next to the original image - this is outside the WORKDIR
+and at risk of collision.
+
+Signed-off-by: Maxim Uvarov <maxim.uvarov@linaro.org>
+Suggested-by: Ilias Apalodimas <ilias.apalodimas@linaro.org>
+Suggested-by: Paul Barker <pbarker@konsulko.com>
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+---
+ scripts/lib/wic/plugins/source/rawcopy.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/scripts/lib/wic/plugins/source/rawcopy.py b/scripts/lib/wic/plugins/source/rawcopy.py
+index 82970ce51b..3c4997d8ba 100644
+--- a/openembedded-core/scripts/lib/wic/plugins/source/rawcopy.py
++++ b/openembedded-core/scripts/lib/wic/plugins/source/rawcopy.py
+@@ -57,7 +57,7 @@ class RawCopyPlugin(SourcePlugin):
+             raise WicError("No file specified")
+ 
+         src = os.path.join(kernel_dir, source_params['file'])
+-        dst = os.path.join(cr_workdir, "%s.%s" % (source_params['file'], part.lineno))
++        dst = os.path.join(cr_workdir, "%s.%s" % (os.path.basename(source_params['file']), part.lineno))
+ 
+         if not os.path.exists(os.path.dirname(dst)):
+             os.makedirs(os.path.dirname(dst))
+-- 
+2.17.1
+
