@@ -1,4 +1,4 @@
-From d4cd27a9837426e809190548a83c6c7c76505114 Mon Sep 17 00:00:00 2001
+From b8dd62af6b5b107e3bf2ecfc25a4bd06f77d5a88 Mon Sep 17 00:00:00 2001
 From: Paul Barker <pbarker@konsulko.com>
 Date: Wed, 8 Jan 2020 11:25:46 +0000
 Subject: [PATCH] wic: Add --include-path argument
@@ -22,10 +22,10 @@ Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
  5 files changed, 72 insertions(+), 20 deletions(-)
 
 diff --git a/meta/lib/oeqa/selftest/cases/wic.py b/meta/lib/oeqa/selftest/cases/wic.py
-index 3c5be2f5016..46cd98b1934 100644
+index ea75300406..f7b4d9f421 100644
 --- a/openembedded-core/meta/lib/oeqa/selftest/cases/wic.py
 +++ b/openembedded-core/meta/lib/oeqa/selftest/cases/wic.py
-@@ -44,6 +44,24 @@ def wrapped_f(*args, **kwargs):
+@@ -44,6 +44,24 @@ def only_for_arch(archs, image='core-image-minimal'):
          return wrapped_f
      return wrapper
  
@@ -50,7 +50,7 @@ index 3c5be2f5016..46cd98b1934 100644
  
  class WicTestCase(OESelftestTestCase):
      """Wic test class."""
-@@ -393,24 +411,6 @@ def test_exclude_path(self):
+@@ -393,24 +411,6 @@ part /etc --source rootfs --ondisk mmcblk0 --fstype=ext4 --exclude-path bin/ --r
                  runCmd("dd if=%s of=%s skip=%d count=%d" %
                                             (wicimg, part_file, start, length))
  
@@ -75,7 +75,7 @@ index 3c5be2f5016..46cd98b1934 100644
              # Test partition 1, should contain the normal root directories, except
              # /usr.
              res = runCmd("debugfs -R 'ls -p' %s 2>/dev/null" % \
-@@ -451,6 +451,43 @@ def extract_files(debugfs_output):
+@@ -451,6 +451,43 @@ part /etc --source rootfs --ondisk mmcblk0 --fstype=ext4 --exclude-path bin/ --r
          finally:
              os.environ['PATH'] = oldpath
  
@@ -120,10 +120,10 @@ index 3c5be2f5016..46cd98b1934 100644
          """Test --exclude-path wks option error handling."""
          wks_file = 'temp.wks'
 diff --git a/scripts/lib/wic/help.py b/scripts/lib/wic/help.py
-index 29c4e436d8c..4d342fcf050 100644
---- a/scripts/lib/wic/help.py
-+++ b/scripts/lib/wic/help.py
-@@ -969,6 +969,16 @@ class (see the SourcePlugin source for details):
+index 3a40fc0ea2..09c858eb76 100644
+--- a/openembedded-core/scripts/lib/wic/help.py
++++ b/openembedded-core/scripts/lib/wic/help.py
+@@ -956,6 +956,16 @@ DESCRIPTION
                           is omitted, not the directory itself. This option only
                           has an effect with the rootfs source plugin.
  
@@ -141,10 +141,10 @@ index 29c4e436d8c..4d342fcf050 100644
                          space after the space filled by the content
                          of the partition. The final size can go
 diff --git a/scripts/lib/wic/ksparser.py b/scripts/lib/wic/ksparser.py
-index 6a643ba3af5..707a2e80196 100644
---- a/scripts/lib/wic/ksparser.py
-+++ b/scripts/lib/wic/ksparser.py
-@@ -137,6 +137,7 @@ def __init__(self, confpath):
+index 6a643ba3af..707a2e8019 100644
+--- a/openembedded-core/scripts/lib/wic/ksparser.py
++++ b/openembedded-core/scripts/lib/wic/ksparser.py
+@@ -137,6 +137,7 @@ class KickStart():
          part.add_argument('--active', action='store_true')
          part.add_argument('--align', type=int)
          part.add_argument('--exclude-path', nargs='+')
@@ -153,10 +153,10 @@ index 6a643ba3af5..707a2e80196 100644
          part.add_argument('--fsoptions', dest='fsopts')
          part.add_argument('--fstype', default='vfat',
 diff --git a/scripts/lib/wic/partition.py b/scripts/lib/wic/partition.py
-index d809408e1a2..2d95f78439b 100644
---- a/scripts/lib/wic/partition.py
-+++ b/scripts/lib/wic/partition.py
-@@ -30,6 +30,7 @@ def __init__(self, args, lineno):
+index d809408e1a..2d95f78439 100644
+--- a/openembedded-core/scripts/lib/wic/partition.py
++++ b/openembedded-core/scripts/lib/wic/partition.py
+@@ -30,6 +30,7 @@ class Partition():
          self.device = None
          self.extra_space = args.extra_space
          self.exclude_path = args.exclude_path
@@ -165,10 +165,10 @@ index d809408e1a2..2d95f78439b 100644
          self.fstype = args.fstype
          self.label = args.label
 diff --git a/scripts/lib/wic/plugins/source/rootfs.py b/scripts/lib/wic/plugins/source/rootfs.py
-index e26e95b9913..705aeb55637 100644
---- a/scripts/lib/wic/plugins/source/rootfs.py
-+++ b/scripts/lib/wic/plugins/source/rootfs.py
-@@ -71,7 +71,7 @@ def do_prepare_partition(cls, part, source_params, cr, cr_workdir,
+index e26e95b991..705aeb5563 100644
+--- a/openembedded-core/scripts/lib/wic/plugins/source/rootfs.py
++++ b/openembedded-core/scripts/lib/wic/plugins/source/rootfs.py
+@@ -71,7 +71,7 @@ class RootfsPlugin(SourcePlugin):
  
          new_rootfs = None
          # Handle excluded paths.
@@ -177,7 +177,7 @@ index e26e95b9913..705aeb55637 100644
              # We need a new rootfs directory we can delete files from. Copy to
              # workdir.
              new_rootfs = os.path.realpath(os.path.join(cr_workdir, "rootfs%d" % part.lineno))
-@@ -81,7 +81,10 @@ def do_prepare_partition(cls, part, source_params, cr, cr_workdir,
+@@ -81,7 +81,10 @@ class RootfsPlugin(SourcePlugin):
  
              copyhardlinktree(part.rootfs_dir, new_rootfs)
  
@@ -189,3 +189,6 @@ index e26e95b9913..705aeb55637 100644
                  path = orig_path
                  if os.path.isabs(path):
                      logger.error("Must be relative: --exclude-path=%s" % orig_path)
+-- 
+2.17.1
+
