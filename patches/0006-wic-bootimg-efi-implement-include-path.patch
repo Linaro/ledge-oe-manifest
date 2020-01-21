@@ -1,4 +1,4 @@
-From 56377d36464a926600b17d9e8f485b8e3ea3b56c Mon Sep 17 00:00:00 2001
+From c7d6acb8aa346b026e846b066e47d73429f3d7f7 Mon Sep 17 00:00:00 2001
 From: Maxim Uvarov <maxim.uvarov@linaro.org>
 Date: Mon, 20 Jan 2020 19:22:52 +0000
 Subject: [PATCH] wic: bootimg-efi: implement --include-path
@@ -12,20 +12,20 @@ Signed-off-by: Maxim Uvarov <maxim.uvarov@linaro.org>
  1 file changed, 4 insertions(+)
 
 diff --git a/scripts/lib/wic/plugins/source/bootimg-efi.py b/scripts/lib/wic/plugins/source/bootimg-efi.py
-index 2cfdc10ecd..fa320a50b8 100644
+index a39d852f6a..8caa1385ba 100644
 --- a/openembedded-core/scripts/lib/wic/plugins/source/bootimg-efi.py
 +++ b/openembedded-core/scripts/lib/wic/plugins/source/bootimg-efi.py
-@@ -289,6 +289,10 @@ class BootimgEFIPlugin(SourcePlugin):
-         mcopy_cmd = "mcopy -i %s -s %s/* ::/" % (bootimg, hdddir)
-         exec_native_cmd(mcopy_cmd, native_sysroot)
+@@ -290,6 +290,10 @@ class BootimgEFIPlugin(SourcePlugin):
+             cp_cmd = "cp %s %s/" % (startup, hdddir)
+             exec_cmd(cp_cmd, True)
  
-+        for path in part.include_path:
-+            mcopy_cmd = "mcopy -i %s -s %s/ ::/" % (bootimg, path)
-+            exec_native_cmd(mcopy_cmd, native_sysroot)
++        for path in part.include_path or []:
++            cp_cmd = "cp -r %s %s/" % (path, hdddir)
++            exec_cmd(cp_cmd, True)
 +
-         chmod_cmd = "chmod 644 %s" % bootimg
-         exec_cmd(chmod_cmd)
- 
+         du_cmd = "du -bks %s" % hdddir
+         out = exec_cmd(du_cmd)
+         blocks = int(out.split()[0])
 -- 
 2.17.1
 
