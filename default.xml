@@ -11,11 +11,12 @@
   <project name="openembedded/meta-openembedded" path="layers/meta-openembedded" revision="1bfaa2e63a184e21a2db5c286444828d5948a8b4"/>
   <project name="openembedded/openembedded-core" path="layers/openembedded-core" revision="75a4cabf55e13e6714c0fdb229cd51b5184ddbef"/>
 
+  <project name="Linaro/ledge-oe-manifest" path="conf" revision="master">
+	   <linkfile dest="setup-environment" src="setup-environment"/>
+  </project>
   <project name="96boards/meta-rpb" path="layers/meta-rpb" revision="50f5ac07d54900292843222206eaeb8497c65b10"/>
   <project name="Freescale/meta-freescale-3rdparty" path="layers/meta-freescale-3rdparty" revision="aea3771baa77e74762358ceb673d407e36637e5f"/>
-  <project name="Linaro/meta-ledge" path="layers/meta-ledge" revision="zeus">
-    <linkfile dest="setup-environment" src="../../.repo/manifests/setup-environment"/>
-  </project>
+  <project name="Linaro/meta-ledge" path="layers/meta-ledge" revision="zeus"/>
   <project name="advancedtelematic/meta-updater" path="layers/meta-updater" revision="693a61a7a342a78adf74d893674f480ff4475f4f"/>
   <project name="git/meta-freescale" path="layers/meta-freescale" remote="yocto" revision="218e7c48e6d7b95f61a9991c0d3c3bf4b38a34c4"/>
   <project name="git/meta-ti" path="layers/meta-ti" remote="yocto" revision="6514f160c3e54e91d866f25b86e7c691b3ebe81b"/>
