@@ -61,13 +61,13 @@ index 2cfdc10ecd..a39d852f6a 100644
 +                    raise WicError("Unknown arch (TARGET_SYS) %s\n" % target)
 +
 +                if re.match("x86_64", target):
-+                    kernel_efi_image = "bootx64.efi"
++                    kernel_efi_image = "kernel-bootx64.efi"
 +                elif re.match('i.86', target):
-+                    kernel_efi_image = "bootia32.efi"
++                    kernel_efi_image = "kernel-bootia32.efi"
 +                elif re.match('aarch64', target):
-+                    kernel_efi_image = "bootaa64.efi"
++                    kernel_efi_image = "kernel-bootaa64.efi"
 +                elif re.match('arm', target):
-+                    kernel_efi_image = "bootarm.efi"
++                    kernel_efi_image = "kernel-bootarm.efi"
 +                else:
 +                    raise WicError("kernel efi is incompatible with target %s" % target)
 +
