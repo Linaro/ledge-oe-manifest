@@ -30,4 +30,5 @@
   <project name="96boards/meta-96boards" path="layers/meta-96boards" revision="762e5e76ad1a5f385f845b09bde723edfcd09cba"/>
   <project name="git/meta-arm" path="layers/meta-arm" remote="yocto" revision="fa9abd9a6efe5854403c874fe7d83a35490461e5"/>
   <project name="meta-rust/meta-rust" path="layers/meta-rust" revision="53bfa324891966a2daf5d36dc13d4a43725aebed"/>
+  <project name="ledge/scripts.git" path="layers/ledge-scripts" remote="linaro" revision="master"/>
 </manifest>
