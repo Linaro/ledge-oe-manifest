@@ -112,6 +112,15 @@ To make TPM operational do:
 ~ #
 ```
 
+6. Secure Storage on QEMU arm64
+Secure storage has been enabled for storage of UEFI variables on the
+QEMU arm64 platform. The feature uses the secure NOR
+flash(flash0) for storage of the variables. The variables are
+persistent across platform resets. However, running a cleanall of the
+trusted-firmware-a recipe removes the secure NOR flash file that had
+been created. A subsequent build of the trusted firmare recipe will
+generate the flash file afresh.
+
 Creating a local topic branch
 -----------------------------
 
