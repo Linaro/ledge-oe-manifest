@@ -1,0 +1,36 @@
+From 642b93cebc9b4c8d8c066355b45581f4bc34c36b Mon Sep 17 00:00:00 2001
+From: Maxim Uvarov <maxim.uvarov@linaro.org>
+Date: Thu, 25 Feb 2021 08:13:45 +0000
+Subject: [PATCH] fix selinux build
+
+Signed-off-by: Maxim Uvarov <maxim.uvarov@linaro.org>
+---
+ recipes-security/selinux/libselinux-python.inc    | 2 +-
+ recipes-security/selinux/libselinux-python_3.0.bb | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/recipes-security/selinux/libselinux-python.inc b/recipes-security/selinux/libselinux-python.inc
+index 3760fd8..96f94a9 100644
+--- a/meta-selinux/recipes-security/selinux/libselinux-python.inc
++++ b/meta-selinux/recipes-security/selinux/libselinux-python.inc
+@@ -7,7 +7,7 @@ LICENSE = "PD"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/libselinux:"
+ 
+-inherit python3native
++inherit python3native setuptools3
+ 
+ DEPENDS += "python3 swig-native libpcre libsepol"
+ RDEPENDS_${PN} += "libselinux python3-core python3-shell"
+diff --git a/recipes-security/selinux/libselinux-python_3.0.bb b/recipes-security/selinux/libselinux-python_3.0.bb
+index 2b5438d..b62d258 100644
+--- a/recipes-security/selinux/libselinux-python_3.0.bb
++++ b/recipes-security/selinux/libselinux-python_3.0.bb
+@@ -19,3 +19,4 @@ SRC_URI += "\
+         file://0001-Do-not-use-PYCEXT-and-rely-on-the-installed-file-nam.patch \
+         "
+ S = "${WORKDIR}/libselinux-${PV}"
++B = "${WORKDIR}/libselinux-${PV}"
+-- 
+2.17.1
+
