@@ -24,8 +24,8 @@ index 3760fd8..96f94a9 100644
  RDEPENDS_${PN} += "libselinux python3-core python3-shell"
 diff --git a/recipes-security/selinux/libselinux-python_3.0.bb b/recipes-security/selinux/libselinux-python_3.0.bb
 index 2b5438d..b62d258 100644
---- a/recipes-security/selinux/libselinux-python_3.0.bb
-+++ b/recipes-security/selinux/libselinux-python_3.0.bb
+--- a/meta-selinux/recipes-security/selinux/libselinux-python_3.0.bb
++++ b/meta-selinux/recipes-security/selinux/libselinux-python_3.0.bb
 @@ -19,3 +19,4 @@ SRC_URI += "\
          file://0001-Do-not-use-PYCEXT-and-rely-on-the-installed-file-nam.patch \
          "
