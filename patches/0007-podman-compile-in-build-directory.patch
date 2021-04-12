@@ -1,0 +1,87 @@
+From fb5d0072b270bbe87baf2ba65057d31fe1318a6b Mon Sep 17 00:00:00 2001
+From: Maxim Uvarov <maxim.uvarov@linaro.org>
+Date: Mon, 12 Apr 2021 16:13:24 +0100
+Subject: [PATCH] podman: compile in build directory
+
+No not touch src directory while building OE. Source
+modifications can lead to unpredictable build state
+and 'pseudo' tool can trap on that. Sometimes I see that
+'pseudo' aborts on installing man files. This happends
+randomly in different places. So it's better to avoid any
+source modification and do builds in build directory. For
+system which do not support out of tree builds - do source
+code copy and then build.
+
+Signed-off-by: Maxim Uvarov <maxim.uvarov@linaro.org>
+---
+ recipes-containers/podman/podman_git.bb | 17 +++++++++++------
+ 1 file changed, 11 insertions(+), 6 deletions(-)
+
+diff --git a/recipes-containers/podman/podman_git.bb b/recipes-containers/podman/podman_git.bb
+index aa6b25b..dd260ff 100644
+--- a/recipes-containers/podman/podman_git.bb
++++ b/recipes-containers/podman/podman_git.bb
+@@ -5,6 +5,7 @@ DESCRIPTION = "Podman is a daemonless container engine for developing, \
+     either be run as root or in rootless mode. Simply put: \
+     `alias docker=podman`. \
+     "
++PR = "r02.ledge"
+ 
+ DEPENDS = " \
+     go-metalinter-native \
+@@ -35,6 +36,7 @@ LIC_FILES_CHKSUM = "file://src/import/LICENSE;md5=e3fc50a88d0a364313df4b21ef20c2
+ GO_IMPORT = "import"
+ 
+ S = "${WORKDIR}/git"
++B = "${WORKDIR}/build"
+ 
+ PV = "1.8.1+git${SRCREV}"
+ 
+@@ -65,7 +67,9 @@ EXTRA_OEMAKE = " \
+ PACKAGECONFIG ?= "docker"
+ 
+ do_compile() {
+-	cd ${S}/src
++	rm -rf ${B}
++	cp -a ${S} ${B}
++	cd ${B}/src
+ 	rm -rf .gopath
+ 	mkdir -p .gopath/src/"$(dirname "${PODMAN_PKG}")"
+ 	ln -sf ../../../../import/ .gopath/src/"${PODMAN_PKG}"
+@@ -73,10 +77,10 @@ do_compile() {
+ 	ln -sf "../../../import/vendor/github.com/varlink/" ".gopath/src/github.com/varlink"
+ 
+ 	export GOARCH="${BUILD_GOARCH}"
+-	export GOPATH="${S}/src/.gopath"
++	export GOPATH="${B}/src/.gopath"
+ 	export GOROOT="${STAGING_DIR_NATIVE}/${nonarch_libdir}/${HOST_SYS}/go"
+ 
+-	cd ${S}/src/.gopath/src/"${PODMAN_PKG}"
++	cd ${B}/src/.gopath/src/"${PODMAN_PKG}"
+ 
+ 	oe_runmake cmd/podman/varlink/iopodman.go GO=go
+ 
+@@ -91,16 +95,17 @@ do_compile() {
+ }
+ 
+ do_install() {
+-	cd ${S}/src/.gopath/src/"${PODMAN_PKG}"
++	cd ${B}/src/.gopath/src/"${PODMAN_PKG}"
+ 
+ 	oe_runmake install DESTDIR="${D}"
+ 	if ${@bb.utils.contains('PACKAGECONFIG', 'docker', 'true', 'false', d)}; then
+ 		oe_runmake install.docker DESTDIR="${D}"
+ 	fi
++
+ 	if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
+ 		install -d ${D}${systemd_unitdir}/system
+-		install -m 644 ${S}/src/import/contrib/systemd/system/podman.service ${D}/${systemd_unitdir}/system
+-		install -m 644 ${S}/src/import/contrib/systemd/system/podman.socket ${D}/${systemd_unitdir}/system
++		install -m 644 ${B}/src/import/contrib/systemd/system/podman.service ${D}/${systemd_unitdir}/system
++		install -m 644 ${B}/src/import/contrib/systemd/system/podman.socket ${D}/${systemd_unitdir}/system
+ 		rm -f ${D}/${systemd_unitdir}/system/docker.service.rpm
+ 	fi
+ }
+-- 
+2.17.1
+
