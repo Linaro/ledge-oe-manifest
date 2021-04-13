@@ -17,10 +17,10 @@ Signed-off-by: Maxim Uvarov <maxim.uvarov@linaro.org>
  recipes-containers/podman/podman_git.bb | 17 +++++++++++------
  1 file changed, 11 insertions(+), 6 deletions(-)
 
-diff --git a/recipes-containers/podman/podman_git.bb b/recipes-containers/podman/podman_git.bb
+diff --git a/meta-virtualization/recipes-containers/podman/podman_git.bb b/meta-virtualization/recipes-containers/podman/podman_git.bb
 index aa6b25b..dd260ff 100644
---- a/recipes-containers/podman/podman_git.bb
-+++ b/recipes-containers/podman/podman_git.bb
+--- a/meta-virtualization/recipes-containers/podman/podman_git.bb
++++ b/meta-virtualization/recipes-containers/podman/podman_git.bb
 @@ -5,6 +5,7 @@ DESCRIPTION = "Podman is a daemonless container engine for developing, \
      either be run as root or in rootless mode. Simply put: \
      `alias docker=podman`. \
