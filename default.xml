@@ -11,13 +11,13 @@
   <project name="openembedded/meta-openembedded" path="layers/meta-openembedded" revision="de37512b25c1f8c6bb6ab2b3782ac0fe01443483"/>
   <project name="openembedded/openembedded-core" path="layers/openembedded-core" revision="a3de6239e98efafe3668396e69133ffee3d9b27f"/>
 
-  <project name="Linaro/ledge-oe-manifest" path="conf" revision="master">
+  <project name="Linaro/ledge-oe-manifest" path="conf" revision="ledge-rp-0.2">
        <linkfile dest="setup-environment" src="setup-environment"/>
   </project>
   <project name="96boards/meta-rpb" path="layers/meta-rpb" revision="d97ba83d07d5ea7c779b192d9b8a375f6b73d498"/>
   <project name="Freescale/meta-freescale-3rdparty" path="layers/meta-freescale-3rdparty" revision="d6effb049b6f635dd6307d0d0f3cc578d076d7de"/>
-  <project name="Linaro/meta-ledge" path="layers/meta-ledge" revision="dunfell"/>
-  <project name="Linaro/ledge-doc" path="layers/ledge-doc" revision="master"/>
+  <project name="Linaro/meta-ledge" path="layers/meta-ledge" revision="391aad73836697ea0c696fe3d36622d6aef86a58"/>
+  <project name="Linaro/ledge-doc" path="layers/ledge-doc" revision="0d17e3ca0cbf33ff3bf65ba357da5e7efcb4d43d"/>
   <project name="advancedtelematic/meta-updater" path="layers/meta-updater" revision="4617a60cf6042f71221f069763bb584c946a198c"/>
   <project name="git/meta-freescale" path="layers/meta-freescale" remote="yocto" revision="6b6e49349269a8d6bab09b8214034a930c4a2d02"/>
   <project name="git/meta-ti" path="layers/meta-ti" remote="yocto" revision="5357bcf01c150e46deb03a08d3327b2d1da0aa1d"/>
@@ -30,5 +30,5 @@
   <project name="96boards/meta-96boards" path="layers/meta-96boards" revision="762e5e76ad1a5f385f845b09bde723edfcd09cba"/>
   <project name="git/meta-arm" path="layers/meta-arm" remote="yocto" revision="02c660521619ddb7a9495d65403aaa2636747ce8"/>
   <project name="meta-rust/meta-rust" path="layers/meta-rust" revision="53bfa324891966a2daf5d36dc13d4a43725aebed"/>
-  <project name="ledge/scripts.git" path="layers/ledge-scripts" remote="linaro" revision="master"/>
+  <project name="ledge/scripts.git" path="layers/ledge-scripts" remote="linaro" revision="fc8aa105577a3ce47855ba22a101d2c5b8e5eacf"/>
 </manifest>
