@@ -16,7 +16,7 @@
   </project>
   <project name="96boards/meta-rpb" path="layers/meta-rpb" revision="d97ba83d07d5ea7c779b192d9b8a375f6b73d498"/>
   <project name="Freescale/meta-freescale-3rdparty" path="layers/meta-freescale-3rdparty" revision="d6effb049b6f635dd6307d0d0f3cc578d076d7de"/>
-  <project name="Linaro/meta-ledge" path="layers/meta-ledge" revision="391aad73836697ea0c696fe3d36622d6aef86a58"/>
+  <project name="Linaro/meta-ledge" path="layers/meta-ledge" revision="9ac909849a500319fb68a5c9ae608417acf8ebd9"/>
   <project name="Linaro/ledge-doc" path="layers/ledge-doc" revision="0d17e3ca0cbf33ff3bf65ba357da5e7efcb4d43d"/>
   <project name="advancedtelematic/meta-updater" path="layers/meta-updater" revision="4617a60cf6042f71221f069763bb584c946a198c"/>
   <project name="git/meta-freescale" path="layers/meta-freescale" remote="yocto" revision="6b6e49349269a8d6bab09b8214034a930c4a2d02"/>
