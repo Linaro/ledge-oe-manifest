@@ -1,0 +1,26 @@
+From b6f7366c23598a0ef4d781d88f24cc3564ecf1c2 Mon Sep 17 00:00:00 2001
+From: Maxim Uvarov <maxim.uvarov@linaro.org>
+Date: Tue, 1 Jun 2021 10:59:09 +0100
+Subject: [PATCH] meta-96board: add hardknott compatible
+
+Signed-off-by: Maxim Uvarov <maxim.uvarov@linaro.org>
+---
+ conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 2d4b9cc..742d593 100644
+--- a/meta-96boards/conf/layer.conf
++++ b/meta-96boards/conf/layer.conf
+@@ -7,7 +7,7 @@ BBFILES += "${LAYERDIR}/recipes*/*/*.bb ${LAYERDIR}/recipes*/*/*.bbappend"
+ BBFILE_COLLECTIONS += "meta-96boards"
+ BBFILE_PATTERN_meta-96boards := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-96boards = "8"
+-LAYERSERIES_COMPAT_meta-96boards = "dunfell"
++LAYERSERIES_COMPAT_meta-96boards = "dunfell hardknott"
+ LAYERDEPENDS_meta-96boards = "openembedded-layer meta-python"
+ 
+ SIGGEN_EXCLUDE_SAFE_RECIPE_DEPS += "\
+-- 
+2.17.1
+
