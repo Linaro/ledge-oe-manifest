@@ -1,6 +1,6 @@
-From 4388f0c328388260c9cbde2577b7079b73a602f8 Mon Sep 17 00:00:00 2001
-From: Maxim Uvarov <maxim.uvarov@linaro.org>
-Date: Mon, 23 Dec 2019 12:18:56 +0000
+From 072d6d122bdfd4be3f0b5e870e32f7822b8160b4 Mon Sep 17 00:00:00 2001
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date: Thu, 6 May 2021 07:12:32 -1000
 Subject: [PATCH] wic: add UEFI kernel as UEFI stub
 
 Linux kernel can be compiled as UEFI stub and loaded directly
@@ -16,22 +16,14 @@ part / --source rootfs --fstype=ext4 --label rootfs \
 
 Signed-off-by: Maxim Uvarov <maxim.uvarov@linaro.org>
 ---
- scripts/lib/wic/plugins/source/bootimg-efi.py | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
+ scripts/lib/wic/plugins/source/bootimg-efi.py | 25 +++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-diff --git a/openembedded-core/scripts/lib/wic/plugins/source/bootimg-efi.py b/openembedded-core/scripts/lib/wic/plugins/source/bootimg-efi.py
-index 2cfdc10ecd..a39d852f6a 100644
+diff --git a/scripts/lib/wic/plugins/source/bootimg-efi.py b/scripts/lib/wic/plugins/source/bootimg-efi.py
+index cdc72543c2..937e06c6e6 100644
 --- a/openembedded-core/scripts/lib/wic/plugins/source/bootimg-efi.py
 +++ b/openembedded-core/scripts/lib/wic/plugins/source/bootimg-efi.py
-@@ -13,6 +13,7 @@
- import logging
- import os
- import shutil
-+import re
- 
- from wic import WicError
- from wic.engine import get_custom_config
-@@ -204,6 +205,8 @@ class BootimgEFIPlugin(SourcePlugin):
+@@ -207,6 +207,8 @@ class BootimgEFIPlugin(SourcePlugin):
                  cls.do_configure_grubefi(hdddir, creator, cr_workdir, source_params)
              elif source_params['loader'] == 'systemd-boot':
                  cls.do_configure_systemdboot(hdddir, creator, cr_workdir, source_params)
@@ -40,15 +32,7 @@ index 2cfdc10ecd..a39d852f6a 100644
              else:
                  raise WicError("unrecognized bootimg-efi loader: %s" % source_params['loader'])
          except KeyError:
-@@ -243,6 +246,7 @@ class BootimgEFIPlugin(SourcePlugin):
-             if source_params['loader'] == 'grub-efi':
-                 shutil.copyfile("%s/hdd/boot/EFI/BOOT/grub.cfg" % cr_workdir,
-                                 "%s/grub.cfg" % cr_workdir)
-+
-                 for mod in [x for x in os.listdir(kernel_dir) if x.startswith("grub-efi-")]:
-                     cp_cmd = "cp %s/%s %s/EFI/BOOT/%s" % (kernel_dir, mod, hdddir, mod[9:])
-                     exec_cmd(cp_cmd, True)
-@@ -252,6 +256,29 @@ class BootimgEFIPlugin(SourcePlugin):
+@@ -312,6 +314,29 @@ class BootimgEFIPlugin(SourcePlugin):
                  for mod in [x for x in os.listdir(kernel_dir) if x.startswith("systemd-")]:
                      cp_cmd = "cp %s/%s %s/EFI/BOOT/%s" % (kernel_dir, mod, hdddir, mod[8:])
                      exec_cmd(cp_cmd, True)
