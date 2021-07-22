@@ -9,7 +9,7 @@
   <project name="openembedded/bitbake" path="bitbake" revision="74042b5b89d5a170013fc1a327ce3a6530fbf7d5"/>
   <project name="openembedded/meta-linaro" path="layers/meta-linaro" remote="linaro" revision="fb96032b38e3064290ab0891238c92d47a45f151"/>
   <project name="openembedded/meta-openembedded" path="layers/meta-openembedded" revision="9ee0e08ba2395b9cb93f2273bb1018adb3630407"/>
-  <project name="openembedded/openembedded-core" path="layers/openembedded-core" revision="hardknott"/>
+  <project name="openembedded/openembedded-core" path="layers/openembedded-core" revision="bfe25c99e914062b0527a6e74ebb8ce1eaad4ca8"/>
 
   <project name="Linaro/ledge-oe-manifest" path="conf" revision="master">
        <linkfile dest="setup-environment" src="setup-environment"/>
