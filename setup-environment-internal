@@ -251,6 +251,15 @@ fi
 sha512sum "${MANIFESTS}"/setup-environment-internal 2>&1 > conf/checksum
 
 ln -sf "${MANIFESTS}"/conf/local.conf conf/local.conf
+
+if [[ ! -z "${DL_DIR}" ]]; then
+	echo "DL_DIR = \"${DL_DIR}\"" >> conf/local.conf
+fi
+
+if [[ ! -z "${SSTATE_DIR}" ]]; then
+	echo "SSTATE_DIR = \"${SSTATE_DIR}\"" >> conf/local.conf
+fi
+
 ln -sf "${MANIFESTS}"/conf/bblayers.conf conf/bblayers.conf
 ln -sf "${MANIFESTS}"/README.md README.md
 if [ -d "${MANIFESTS}"/conf/multiconfig ]; then
